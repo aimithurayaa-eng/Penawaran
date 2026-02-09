@@ -179,7 +179,15 @@ const App: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+            /* ✅ VITE ENV */
+      const apiKey = import.meta.env.VITE_API_KEY;
+
+      if (!apiKey) {
+        throw new Error("VITE_API_KEY tidak dijumpai");
+      }
+
+      const ai = new GoogleGenAI({ apiKey });
+      
       const systemInstruction = `Anda ialah JOMRUMAHBOT, pakar analitik perumahan Malaysia yang pintar dan profesional.
 Tugas utama: Memberi insight mendalam berdasarkan data NAPIC 2024 yang disediakan.
 
@@ -215,7 +223,7 @@ Data CSV:
 ${RAW_CSV_DATA}`;
 
       const response = await ai.models.generateContent({
-        model: 'gemini-3-pro-preview',
+        model: 'gemini-2.5-flash',
         contents: messageToSend,
         config: { systemInstruction, temperature: 0.1 }
       });
