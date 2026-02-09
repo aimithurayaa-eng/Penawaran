@@ -5,15 +5,15 @@ export interface Message {
   isStreaming?: boolean;
 }
 
-export interface CSVData {
-  headers: string[];
-  rows: Record<string, any>[];
-  fileName: string;
-}
-
-export interface QueryResult {
-  summary: string;
-  table?: any[];
-  insights: string[];
-  chartSuggestion: string;
+export interface HousingData {
+  DAERAH: string;
+  Negeri: string;
+  Tahun: number;
+  "BIL UNIT NAPIC SEMASA": number;
+  "BIL UNIT NAPIC ALL": number;
+  Bil_Isi_Rumah: number;
+  Bil_t_Kediaman_D: number;
+  Kecukupan_NAPIC: number;
+  Tahap_NAPIC: string;
+  Perumahan_tidakformal_semasa: number;
 }
